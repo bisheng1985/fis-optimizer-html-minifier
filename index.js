@@ -8,7 +8,9 @@
 var minify = require('html-minifier').minify;
 
 module.exports = function(content, file, conf){
-    return minify(content, conf);
+    var customConf = fis.config.get('settings.optimizer.html');
+    var options = fis.util.merge(customConf, conf);
+    return minify(content, options);
 };
 
 module.exports.defaultOptions = {
